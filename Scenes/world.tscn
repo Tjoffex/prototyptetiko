@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctwot3gh2dnpo"]
+
+[ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://Scenes/Ugly Test Environment.blend" id="1_go701"]
+[ext_resource type="Script" uid="uid://bkwcxyhac2wtu" path="res://Scripts/world.gd" id="1_k7acu"]
+[ext_resource type="Script" uid="uid://qjr3aa4kpwh3" path="res://Scripts/player_character.gd" id="2_5a7ea"]
+[ext_resource type="Texture2D" uid="uid://di756c0t4afct" path="res://Assets/crosshair/direction.png" id="2_5ukr8"]
+[ext_resource type="Script" uid="uid://bsk6kd000kirr" path="res://Scripts/hud.gd" id="2_5v1tr"]
+[ext_resource type="PackedScene" uid="uid://dvottc2omoudx" path="res://Assets/vampyric shotgun.fbx" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://dj8ks8f1mx0rb" path="res://Assets/Rune Pistol.blend" id="4_fo5ed"]
+[ext_resource type="Texture2D" uid="uid://bfoo1ycgbiuq1" path="res://Assets/crosshair/center.png" id="5_fo5ed"]
+[ext_resource type="Script" uid="uid://b3p55tymjwqfc" path="res://Scripts/enemy_handler.gd" id="8_5v1tr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ukr8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fo5ed")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5ukr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fo5ed")
+}],
+"loop": true,
+"name": &"on_click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5ukr8")
+}],
+"loop": true,
+"name": &"on_pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j60k"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_k7acu")
+
+[node name="HUD" type="Node2D" parent="."]
+script = ExtResource("2_5v1tr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD"]
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HUD/CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="HUD/CanvasLayer/CenterContainer/Control"]
+sprite_frames = SubResource("SpriteFrames_5ukr8")
+
+[node name="Ugly Test Environment" parent="." instance=ExtResource("1_go701")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ugly Test Environment"]
+transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 0, 5, 0)
+
+[node name="PlayerCharacter" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+script = ExtResource("2_5a7ea")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter"]
+shape = SubResource("CapsuleShape3D_8j60k")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCharacter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="vampyric shotgun2" parent="PlayerCharacter/Camera3D" instance=ExtResource("4_8j60k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 1, -0.5, 1)
+
+[node name="Rune Pistol" parent="PlayerCharacter/Camera3D" instance=ExtResource("4_fo5ed")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.5, -0.25, -0.5)
+visible = false
+
+[node name="EnemyHandler" type="Node3D" parent="."]
+script = ExtResource("8_5v1tr")
+
+[connection signal="weapon_fired" from="PlayerCharacter" to="HUD" method="_on_player_character_weapon_fired"]
