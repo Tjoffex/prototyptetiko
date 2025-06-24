@@ -23,20 +23,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_5ukr8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_fo5ed")
 }],
 "loop": true,
-"name": &"on_click",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_5ukr8")
-}],
-"loop": true,
-"name": &"on_pressed",
+"name": &"trigger_held",
 "speed": 5.0
 }]
 
@@ -44,6 +33,9 @@ animations = [{
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_k7acu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 7, 1, -8)
 
 [node name="HUD" type="Node2D" parent="."]
 script = ExtResource("2_5v1tr")
@@ -62,11 +54,10 @@ layout_mode = 2
 
 [node name="Crosshair" type="AnimatedSprite2D" parent="HUD/CanvasLayer/CenterContainer/Control"]
 sprite_frames = SubResource("SpriteFrames_5ukr8")
+animation = &"trigger_held"
 
 [node name="Ugly Test Environment" parent="." instance=ExtResource("1_go701")]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ugly Test Environment"]
-transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4, -8)
 
 [node name="PlayerCharacter" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
@@ -89,4 +80,6 @@ visible = false
 [node name="EnemyHandler" type="Node3D" parent="."]
 script = ExtResource("8_5v1tr")
 
+[connection signal="trigger_pulled" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_pulled"]
+[connection signal="trigger_released" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_released"]
 [connection signal="weapon_fired" from="PlayerCharacter" to="HUD" method="_on_player_character_weapon_fired"]

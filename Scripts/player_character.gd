@@ -7,6 +7,8 @@ var jump_speed = 5
 var mouse_sensitivity = 0.005
 
 signal weapon_fired()
+signal trigger_pulled()
+signal trigger_released()
 
 
 
@@ -29,5 +31,11 @@ func _input(event: InputEvent) -> void:
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 		
-	if event is InputEventMouseButton and event.is_released():
+	
+	if Input.is_action_pressed("Weapon_fired"):
 		weapon_fired.emit()
+		trigger_pulled.emit()
+	
+	if Input.is_action_just_released("Weapon_fired"):
+		trigger_released.emit()
+	
