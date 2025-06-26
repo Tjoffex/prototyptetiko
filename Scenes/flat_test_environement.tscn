@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch4sn4540kjqt"]
+[gd_scene load_steps=4 format=3 uid="uid://ch4sn4540kjqt"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_cx0po"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cx0po"]
 size = Vector3(100, 1, 100)
@@ -7,12 +9,34 @@ size = Vector3(100, 1, 100)
 
 [node name="FlatTestEnvironement" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_cx0po")
+
+[node name="Obstacle" type="CSGCylinder3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.20778, 1, 5.23002)
+
+[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.622747, 0, 0.782423, 0, 1, 0, -0.782423, 0, 0.622747, -14.9341, 1, 12.3697)
+size = Vector3(1, 1.69934, 7.75146)
+
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.586938, 0, -0.809632, 0, 1, 0, 0.809632, 0, 0.586938, -5.67302, 1, -12.9132)
+size = Vector3(1, 1.69934, 7.75146)
+
+[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7721, 1, -1.06136)
+size = Vector3(1, 1.69934, 7.75146)
+
+[node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5053, 1, -5.06763)
+size = Vector3(1, 1.69934, 7.75146)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_cx0po")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("BoxMesh_k4l7r")
