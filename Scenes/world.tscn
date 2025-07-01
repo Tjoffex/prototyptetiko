@@ -1,27 +1,111 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctwot3gh2dnpo"]
+[gd_scene load_steps=10 format=3 uid="uid://ctwot3gh2dnpo"]
 
 [ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://Scenes/Ugly Test Environment.blend" id="1_go701"]
 [ext_resource type="Script" uid="uid://bkwcxyhac2wtu" path="res://Scripts/world.gd" id="1_k7acu"]
-[ext_resource type="PackedScene" uid="uid://djyax4263761i" path="res://Scenes/hud.tscn" id="2_fo5ed"]
+[ext_resource type="Script" uid="uid://bsk6kd000kirr" path="res://Scripts/hud.gd" id="2_k7acu"]
+[ext_resource type="Texture2D" uid="uid://bfoo1ycgbiuq1" path="res://Assets/crosshair/center.png" id="3_5v1tr"]
+[ext_resource type="Texture2D" uid="uid://di756c0t4afct" path="res://Assets/crosshair/direction.png" id="4_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://iyniqlas5w4n" path="res://Scenes/player_character.tscn" id="4_5ukr8"]
+[ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://Assets/default_theme.tres" id="5_ikia7"]
 [ext_resource type="Script" uid="uid://b3p55tymjwqfc" path="res://Scripts/enemy_handler.gd" id="8_5v1tr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ukr8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5v1tr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0fj1v")
+}],
+"loop": true,
+"name": &"trigger_held",
+"speed": 5.0
+}]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_k7acu")
 
+[node name="HUD" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("2_k7acu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD"]
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HUD/CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="Crosshair" type="AnimatedSprite2D" parent="HUD/CanvasLayer/CenterContainer/Control"]
+sprite_frames = SubResource("SpriteFrames_5ukr8")
+animation = &"trigger_held"
+
+[node name="MainMenu" type="PanelContainer" parent="HUD/CanvasLayer/CenterContainer/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_ikia7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/CanvasLayer/CenterContainer/Control/MainMenu"]
+layout_mode = 2
+theme = ExtResource("5_ikia7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_ikia7")
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_ikia7")
+text = "Settings(dummy)
+"
+
+[node name="QuitButton" type="Button" parent="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_ikia7")
+text = "Quit"
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 7, 1, -8)
-
-[node name="HUD" parent="." instance=ExtResource("2_fo5ed")]
 
 [node name="Ugly Test Environment" parent="." instance=ExtResource("1_go701")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4, -8)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_5ukr8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102276, 5.96757, 0.0149856)
 
 [node name="EnemyHandler" type="Node3D" parent="."]
 script = ExtResource("8_5v1tr")
 
+[connection signal="exit" from="." to="HUD" method="_on_world_exit"]
+[connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="HUD" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="trigger_pulled" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_pulled"]
 [connection signal="trigger_released" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_released"]

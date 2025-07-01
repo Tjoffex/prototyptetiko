@@ -1,42 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch4sn4540kjqt"]
+[gd_scene load_steps=6 format=3 uid="uid://ch4sn4540kjqt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cx0po"]
+vertices = PackedVector3Array(-49.5, 1, 1, -10, 1, 1, -9.75, 1, 0, -7.75, 1, -49.5, -49.5, 1, -49.5, -7.75, 1, 0, 3, 1, 0, 3, 1, -49.5, 5, 1, 0, 5.25, 1, 1, 49.5, 1, 1, 49.5, 1, -49.5, -9.75, 1, 2.25, -49.5, 1, 49.5, -8.5, 1, 49.5, -8.25, 1, 2.25, 5, 1, 2.25, 3.75, 1, 49.5, 49.5, 1, 49.5, 3.5, 1, 2.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(3, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(1, 12, 0), PackedInt32Array(0, 12, 13), PackedInt32Array(13, 12, 14), PackedInt32Array(12, 15, 14), PackedInt32Array(9, 10, 16), PackedInt32Array(16, 10, 18), PackedInt32Array(16, 18, 17), PackedInt32Array(17, 19, 16), PackedInt32Array(15, 19, 14), PackedInt32Array(14, 19, 17)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cx0po"]
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k4l7r"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_cx0po"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k4l7r"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [node name="FlatTestEnvironement" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_cx0po")
 
-[node name="Obstacle" type="CSGCylinder3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.20778, 1, 5.23002)
-
-[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.622747, 0, 0.782423, 0, 1, 0, -0.782423, 0, 0.622747, -14.9341, 1, 12.3697)
-size = Vector3(1, 1.69934, 7.75146)
-
-[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.586938, 0, -0.809632, 0, 1, 0, 0.809632, 0, 0.586938, -5.67302, 1, -12.9132)
-size = Vector3(1, 1.69934, 7.75146)
-
-[node name="Wall3" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7721, 1, -1.06136)
-size = Vector3(1, 1.69934, 7.75146)
-
-[node name="Wall4" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5053, 1, -5.06763)
-size = Vector3(1, 1.69934, 7.75146)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
 shape = SubResource("BoxShape3D_cx0po")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("BoxMesh_k4l7r")
+
+[node name="Wall" type="StaticBody3D" parent="NavigationRegion3D"]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall"]
+transform = Transform3D(14, 0, 0, 0, 1, 0, 0, 0, 1, -2.33806, 1.00898, 1.22658)
+mesh = SubResource("BoxMesh_cx0po")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Wall"]
+shape = SubResource("ConcavePolygonShape3D_k4l7r")
