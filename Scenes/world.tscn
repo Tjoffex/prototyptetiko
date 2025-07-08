@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctwot3gh2dnpo"]
+[gd_scene load_steps=14 format=3 uid="uid://ctwot3gh2dnpo"]
 
 [ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://Scenes/Ugly Test Environment.blend" id="1_go701"]
 [ext_resource type="Script" uid="uid://bkwcxyhac2wtu" path="res://Scripts/world.gd" id="1_k7acu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://iyniqlas5w4n" path="res://Scenes/player_character.tscn" id="4_5ukr8"]
 [ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://Assets/default_theme.tres" id="5_ikia7"]
 [ext_resource type="Script" uid="uid://b3p55tymjwqfc" path="res://Scripts/enemy_handler.gd" id="8_5v1tr"]
+[ext_resource type="Script" uid="uid://b1d33g5x2kk1y" path="res://Scripts/test_enemy.gd" id="9_5v1tr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ukr8"]
 animations = [{
@@ -27,6 +28,13 @@ animations = [{
 "name": &"trigger_held",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k7acu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v1tr"]
+albedo_color = Color(1, 0.211765, 0.203922, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0fj1v"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_k7acu")
@@ -98,10 +106,22 @@ transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4, -8)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_5ukr8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102276, 5.96757, 0.0149856)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102276, -3, 0.0149856)
 
 [node name="EnemyHandler" type="Node3D" parent="."]
 script = ExtResource("8_5v1tr")
+
+[node name="TestEnemy" type="CharacterBody3D" parent="EnemyHandler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6827, 2.12647, -13.1558)
+script = ExtResource("9_5v1tr")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyHandler/TestEnemy"]
+mesh = SubResource("CapsuleMesh_k7acu")
+surface_material_override/0 = SubResource("StandardMaterial3D_5v1tr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHandler/TestEnemy"]
+shape = SubResource("CapsuleShape3D_0fj1v")
 
 [connection signal="exit" from="." to="HUD" method="_on_world_exit"]
 [connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

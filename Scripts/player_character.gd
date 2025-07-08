@@ -5,6 +5,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed = 5
 var jump_speed = 5
 var mouse_sensitivity = 0.005
+var target
+@onready var aim = $Camera3D/RayCast3D
 
 signal weapon_fired()
 signal trigger_pulled()
@@ -22,6 +24,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = jump_speed 
+		
+	if aim.is_colliding():
+		target = aim.get_collider()
+		#print(target.name)
+		
 
 #
 func _input(event: InputEvent) -> void:
