@@ -4,7 +4,8 @@ signal exit()
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	get_tree().paused = true
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("exit"):

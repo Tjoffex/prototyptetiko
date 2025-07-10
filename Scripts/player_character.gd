@@ -7,6 +7,8 @@ var jump_speed = 5
 var mouse_sensitivity = 0.005
 var target
 @onready var aim = $Camera3D/RayCast3D
+#ska INTE bo här permanent!
+var damage = 20
 
 signal weapon_fired()
 signal trigger_pulled()
@@ -25,9 +27,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = jump_speed 
 		
-	if aim.is_colliding():
-		target = aim.get_collider()
-		#print(target.name)
+	
 		
 
 #
@@ -45,4 +45,9 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_released("Weapon_fired"):
 		trigger_released.emit()
+		if aim.is_colliding():
+			target = aim.get_collider()
+			print(target.name)
+			if target.has_method("hit"):
+				target.hit(damage) 
 	
