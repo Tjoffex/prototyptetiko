@@ -47,7 +47,6 @@ func _input(event: InputEvent) -> void:
 		trigger_released.emit()
 		if aim.is_colliding():
 			target = aim.get_collider()
-			print(target.name)
 			if target.has_method("hit"):
 				target.hit(damage) 
 	

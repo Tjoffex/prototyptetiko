@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://Assets/default_theme.tres" id="5_ikia7"]
 [ext_resource type="Script" uid="uid://b3p55tymjwqfc" path="res://Scripts/enemy_handler.gd" id="8_5v1tr"]
 [ext_resource type="Script" uid="uid://b1d33g5x2kk1y" path="res://Scripts/test_enemy.gd" id="9_5v1tr"]
+[ext_resource type="Material" uid="uid://b7cwjanvslben" path="res://Assets/enemy_green.tres" id="10_0fj1v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ukr8"]
 animations = [{
@@ -30,9 +31,6 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k7acu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v1tr"]
-albedo_color = Color(1, 0.211765, 0.203922, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0fj1v"]
 
@@ -109,13 +107,14 @@ transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4, -8)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_5ukr8")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102276, -3, 0.0149856)
 
 [node name="EnemyHandler" type="Node3D" parent="."]
 script = ExtResource("8_5v1tr")
 
 [node name="TestEnemy" type="CharacterBody3D" parent="EnemyHandler"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6827, 2.12647, -13.1558)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.80756, -0.41045, -13.1152)
 script = ExtResource("9_5v1tr")
 metadata/_edit_group_ = true
 
@@ -143,7 +142,7 @@ show_percentage = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyHandler/TestEnemy"]
 mesh = SubResource("CapsuleMesh_k7acu")
-surface_material_override/0 = SubResource("StandardMaterial3D_5v1tr")
+surface_material_override/0 = ExtResource("10_0fj1v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHandler/TestEnemy"]
 shape = SubResource("CapsuleShape3D_0fj1v")
@@ -152,6 +151,8 @@ shape = SubResource("CapsuleShape3D_0fj1v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_5v1tr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="EnemyHandler/TestEnemy"]
 
 [connection signal="exit" from="." to="HUD" method="_on_world_exit"]
 [connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
