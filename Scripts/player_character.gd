@@ -7,6 +7,8 @@ var jump_speed = 5
 var mouse_sensitivity = 0.005
 var target
 @onready var aim = $Camera3D/RayCast3D
+@onready var collider = $CollisionShape3D
+
 #ska INTE bo här permanent!
 var damage = 20
 
@@ -28,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_speed 
 		
 	
-		
+	
 
 #
 func _input(event: InputEvent) -> void:

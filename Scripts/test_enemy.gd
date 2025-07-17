@@ -1,7 +1,8 @@
 extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health = 100
-var speed = 3
+var speed = 4
+
 @onready var nav_agent = $NavigationAgent3D
 
 
@@ -33,10 +34,13 @@ func _physics_process(delta: float) -> void:
 		chasing = false
 		
 	if chasing:
+		
+		
 		nav_agent.set_target_position(player.global_position)
 		var next_nav_point = nav_agent.get_next_path_position()
+	
 		velocity = (next_nav_point - self.global_position).normalized() * speed
-		print("chase")
+		
 
 
 func hit(damage):
