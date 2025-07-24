@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://iyniqlas5w4n"]
 
 [ext_resource type="Script" uid="uid://qjr3aa4kpwh3" path="res://Scripts/player_character.gd" id="1_o0f8b"]
-[ext_resource type="PackedScene" uid="uid://cng8fyio2gosn" path="res://Assets/vampyric shotgun wo rig.blend" id="2_pb3n0"]
+[ext_resource type="PackedScene" uid="uid://cng8fyio2gosn" path="res://Assets/Weapon/vampyric shotgun wo rig.blend" id="2_pb3n0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j60k"]
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctwot3gh2dnpo"]
+[gd_scene load_steps=18 format=3 uid="uid://ctwot3gh2dnpo"]
 
-[ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://Scenes/Ugly Test Environment.blend" id="1_go701"]
 [ext_resource type="Script" uid="uid://bkwcxyhac2wtu" path="res://Scripts/world.gd" id="1_k7acu"]
+[ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://Scenes/Ugly Test Environment.blend" id="2_ikia7"]
 [ext_resource type="Script" uid="uid://bsk6kd000kirr" path="res://Scripts/hud.gd" id="2_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bfoo1ycgbiuq1" path="res://Assets/crosshair/center.png" id="3_5v1tr"]
 [ext_resource type="Texture2D" uid="uid://di756c0t4afct" path="res://Assets/crosshair/direction.png" id="4_0fj1v"]
@@ -9,7 +9,8 @@
 [ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://Assets/default_theme.tres" id="5_ikia7"]
 [ext_resource type="Script" uid="uid://b3p55tymjwqfc" path="res://Scripts/enemy_handler.gd" id="8_5v1tr"]
 [ext_resource type="Script" uid="uid://b1d33g5x2kk1y" path="res://Scripts/test_enemy.gd" id="9_5v1tr"]
-[ext_resource type="Material" uid="uid://b7cwjanvslben" path="res://Assets/enemy_green.tres" id="10_0fj1v"]
+[ext_resource type="Material" uid="uid://b7cwjanvslben" path="res://Assets/Textures/enemy_green.tres" id="10_0fj1v"]
+[ext_resource type="PackedScene" uid="uid://cvt6on3t6scgp" path="res://Scenes/draugr.tscn" id="11_ikia7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bfcjv"]
 vertices = PackedVector3Array(-31.25, 0.25, -15, -16.5, -1.25, -14.75, -16.5, -1.5, -16.25, -23.875, -1.5, -15.625, -25.35, -1.25, -14.9, -14.75, -1, -16.5, -15, 0.25, -31.25, -31.25, 0.5, -31.25, -14.875, -1.25, -23.875, -24.5246, -1.5, -24.4954, -29.0099, 0.5, -27.4761, -22.985, -0.5, -28.9811, -29.0146, -0.5, -22.9795, -17.0147, -1.25, -25.9893, -27.49, 0.5, -29.014, -7.5, 0.5, -16.5, -7.25, 0.5, -15.75, -0.25, 0.5, -16, -0.25, 0.5, -24, 2, 0.5, -24.25, 2, 0.5, -31.25, -13.3, -0.5, -16.5, -10.4, -0.5, -16.5, -10.9896, -0.5, -24.4844, -7.98471, 0.5, -26.0113, -11.0049, -0.25, -27.4932, -7.98495, 0.5, -28.9811, -9.51996, 0, -28.992, -14.0096, -0.75, -24.5064, 6.25, 0.5, -24.25, 6.25, 0.5, -31.25, 24.5, 0.5, -16.5, 24.75, 0.5, -14.75, 31.5, 0.5, -15, 31.5, 0.5, -31.25, 8.5, 0.5, -16, 15.5, 0.5, -15.75, 15.75, 0.5, -16.5, 8.5, 0.5, -24, 0.75, -0.5, -23.25, 0.75, -0.5, -16.5, 7.5, -0.5, -16.5, 7.5, -0.5, -23.25, 8.25, 0.5, -15.5, 15.5, 0.5, -7.5, 11.875, 1, -11.5, 0, 0.5, -15.5, -7.25, 0.5, -7.75, 17, 0.5, 2, 17.25, 0.5, -7.25, -7.25, 0.5, 2, 0.985435, 1.5, -7.97946, 6.99131, 1.5, -0.477406, 11.4865, 0.5, 1.00937, 8.51649, 1, 0.9874, 1.00127, 1.5, -0.521355, 11.4963, 1, -0.494446, -15.5, 1.5, -15.5, -15.5, 1.5, -8.25, -14, 1.5, -8.25, -14, 1.5, -15.5, -13, 2.5, -15.5, -13, 2.5, -8.25, -11, 2.5, -8.25, -11, 2.5, -15.5, -10, 1.5, -15.5, -10, 1.5, -8.25, -8.25, 1.5, -8.25, -8.25, 1.5, -15.5, 16.5, 1.5, -15.5, 16.5, 1.5, -8.25, 23.75, 1.5, -8.25, 23.75, 1.5, -15.5, -31.25, 0.25, -8.75, -16.5, 0.25, -9, 24.75, 0.5, -9.25, 31.5, 0.5, -9, 24.75, 0.5, -7.75, 24.5, 0.5, 2, 24.75, 0.5, 4, 31.5, 0.5, 4, 24.25, 0.5, -7.25, 22.5, 0.5, -7.25, 22.75, 0.5, 2, -31.25, 0.5, 4, -24.5, 0.5, 4, -24.25, 0.5, 2, -16.75, 0.5, 2, -16.5, 0.5, -7.75, -13, 0.5, 2, -12.75, 0.5, 4, -11.25, 0.5, 4, -11, 0.5, 2, -7.75, 0.5, -7.25, -16.25, 0.5, -7.25, -23.5, 4.5, 3, -23.5, 4.5, 5, -13.75, 4.5, 5, -13.75, 4.5, 3, -10.25, 4.5, 3, -10.25, 4.5, 5, 23.75, 4.5, 5, 23.75, 4.5, 3, -22, 0.5, 7.75, -20, 0.5, 7.5, -20, 0.5, 6, -24.25, 0.5, 6, -31.25, 0.5, 23.25, -22, 0.5, 23, -18, 0.5, 7.75, -13, 0.5, 6, -11, 0.5, 6, -8.5, 0.5, 15.75, -6.25, 0.5, 15.5, -6.25, 0.5, 6, -18, 0.5, 17.75, -8.5, 0.5, 17.75, 6.25, 2.5, 7.5, 5.75, 2.25, 7.5, 5.75, 2.5, 8, 6.25, 2.75, 8.25, 7.75, 3.25, 8, 0.75, 0.5, 16, 0.75, 0.5, 24.25, 4.83333, 1.5, 14.7708, 6.58333, 3, 10.7083, 4.25, 1.75, 7.5, 3.75, 1.5, 7.5, 3.75, 1.75, 8, 4.25, 2, 8.25, -1.75, 0.5, 31.25, 31.5, 0.5, 31.25, 24.5, 0.5, 6, 16.125, 2.5, 7, 16.0002, 3.25, 9.98981, 22.016, 0.5, 17.4979, 15.976, 2, 17.504, 19.0164, 0.5, 20.4775, 6.97572, 2.25, 15.9842, 14.48, 3.5, 8.50796, 15.9963, 1.25, 20.5056, 17.4916, 0.5, 21.9923, 19.0105, 1.5, 12.9755, 17.4852, 2.75, 10.0008, 6.9804, 2.25, 12.9876, 11.4951, 3.5, 10.0068, 13.0204, 2.5, 12.9815, 15.9905, 2.5, 13.0035, 16.015, 3.25, 8.51895, 21.9902, 1.25, 9.98375, 17.5001, 2.75, 8.47993, 21.9754, 0.75, 11.5046, 23.475, 0.5, 6.975, 14.5152, 3.5, 9.97882, 17.5208, 2, 16.0111, 8.47512, 3.5, 9.98487, 2.5, 1.5, 8.25, 0.25, 0.5, 24.75, -1.75, 0.5, 24.75, 8, 1.75, 6.25, 20.375, 1.5, 6.0625, 2.25, 0.75, 7.25, 3.75, 1, 7, 3.75, 0.5, 6.5, 0.5, 0.5, 15.5, 5.25, 0.5, 6, -21, 4.5, 8.5, -21, 3.5, 23.75, -19, 3.5, 23.75, -19, 4.5, 8.5, -21, 4.5, 12.6591, -21, 3.5, 16.8182, -19, 3.5, 16.8182, -19, 4.5, 12.6591, -7.5, 1.5, 16.5, -7.5, 1.5, 23.75, -0.25, 1.5, 23.75, -0.25, 1.5, 16.5, -18, 0.5, 24.25, -16.5, 0.5, 24.25, -16.25, 0.5, 23.5, -12.75, 0.5, 23.75, -12.75, 0.5, 31.25, -11.25, 0.5, 31.25, -11.25, 0.5, 23.75, -8.5, 0.5, 23.5, -18.25, 0.5, 24.75, -16.5, 0.5, 31.25, -31.25, 0.5, 31.25, -21.75, 0.5, 24.75, -15.5, 2.5, 24.5, -15.5, 2.5, 31.25, -13.75, 2.5, 31.25, -13.75, 2.5, 24.5, -10.25, 1.5, 24.5, -10.25, 1.5, 31.25, -8.25, 1.5, 31.25, -8.25, 1.5, 24.5, -7.25, 0.5, 24.75, -7.25, 0.5, 31.25)
@@ -39,7 +40,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0fj1v"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0fj1v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ikia7"]
 viewport_path = NodePath("EnemyHandler/TestEnemy/SubViewport")
 
 [sub_resource type="Environment" id="Environment_5v1tr"]
@@ -50,7 +51,7 @@ script = ExtResource("1_k7acu")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_bfcjv")
 
-[node name="Ugly Test Environment" parent="NavigationRegion3D" instance=ExtResource("1_go701")]
+[node name="Ugly Test Environment" parent="NavigationRegion3D" instance=ExtResource("2_ikia7")]
 
 [node name="HUD" type="Node2D" parent="."]
 process_mode = 3
@@ -123,7 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.60202, 0)
 script = ExtResource("8_5v1tr")
 
 [node name="TestEnemy" type="CharacterBody3D" parent="EnemyHandler"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5341, 3.50098, 28.0656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4407, 1, 0.231143)
 script = ExtResource("9_5v1tr")
 metadata/_edit_group_ = true
 
@@ -150,8 +151,12 @@ value = 100.0
 show_percentage = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyHandler/TestEnemy"]
+visible = false
 mesh = SubResource("CapsuleMesh_k7acu")
 surface_material_override/0 = ExtResource("10_0fj1v")
+
+[node name="draugrsmall+swordAnimation" parent="EnemyHandler/TestEnemy" instance=ExtResource("11_ikia7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHandler/TestEnemy"]
 shape = SubResource("CapsuleShape3D_0fj1v")
@@ -159,10 +164,9 @@ shape = SubResource("CapsuleShape3D_0fj1v")
 [node name="Sprite3D" type="Sprite3D" parent="EnemyHandler/TestEnemy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 billboard = 1
-texture = SubResource("ViewportTexture_0fj1v")
+texture = SubResource("ViewportTexture_ikia7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="EnemyHandler/TestEnemy"]
-avoidance_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5v1tr")
@@ -173,3 +177,8 @@ environment = SubResource("Environment_5v1tr")
 [connection signal="pressed" from="HUD/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="trigger_pulled" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_pulled"]
 [connection signal="trigger_released" from="PlayerCharacter" to="HUD" method="_on_player_character_trigger_released"]
+[connection signal="attack_animation" from="EnemyHandler/TestEnemy" to="EnemyHandler/TestEnemy/draugrsmall+swordAnimation" method="_on_test_enemy_attack_animation"]
+[connection signal="chase_animation" from="EnemyHandler/TestEnemy" to="EnemyHandler/TestEnemy/draugrsmall+swordAnimation" method="_on_test_enemy_chase_animation"]
+[connection signal="die_animation" from="EnemyHandler/TestEnemy" to="EnemyHandler/TestEnemy/draugrsmall+swordAnimation" method="_on_test_enemy_die_animation"]
+[connection signal="hit_animation" from="EnemyHandler/TestEnemy" to="EnemyHandler/TestEnemy/draugrsmall+swordAnimation" method="_on_test_enemy_hit_animation"]
+[connection signal="idle_stand_animation" from="EnemyHandler/TestEnemy" to="EnemyHandler/TestEnemy/draugrsmall+swordAnimation" method="_on_test_enemy_idle_stand_animation"]

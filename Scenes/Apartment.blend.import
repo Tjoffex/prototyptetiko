@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fctxy4me5y3d"
-path="res://.godot/imported/vampyric shotgun.blend-edb1b021304c13d481c1d974aad3de17.scn"
+uid="uid://b08pak6htlpfe"
+path="res://.godot/imported/Apartment.blend-b951960038f440daf004efb3cf929143.scn"
 
 [deps]
 
-source_file="res://Assets/vampyric shotgun.blend"
-dest_files=["res://.godot/imported/vampyric shotgun.blend-edb1b021304c13d481c1d974aad3de17.scn"]
+source_file="res://Scenes/Apartment.blend"
+dest_files=["res://.godot/imported/Apartment.blend-b951960038f440daf004efb3cf929143.scn"]
 
 [params]
 
