@@ -38,11 +38,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "uid://jtbm7yiw1m1h"
 }
-},
-"nodes": {
-"PATH:Plane": {
-"generate/navmesh": 1
-}
 }
 }
 blender/nodes/visible=0

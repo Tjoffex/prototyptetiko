@@ -4,6 +4,7 @@ var health = 100
 var speed = 1
 var state = States.idle
 
+#state machine, not implemented
 enum States {
 	idle,
 	chase,
