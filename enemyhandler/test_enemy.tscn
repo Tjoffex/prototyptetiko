@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp6tnc0w1ys0l"]
+
+[ext_resource type="Script" uid="uid://b1d33g5x2kk1y" path="res://enemyhandler/test_enemy.gd" id="1_iidlk"]
+[ext_resource type="PackedScene" uid="uid://bk5dmugtxbdww" path="res://enemyhandler/draugr.tscn" id="3_r2qtq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0fj1v"]
+radius = 0.316541
+height = 1.7442
+
+[node name="TestEnemy" type="CharacterBody3D"]
+script = ExtResource("1_iidlk")
+metadata/_edit_group_ = true
+
+[node name="draugrsmall+swordAnimation" parent="." instance=ExtResource("3_r2qtq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.269555, 0)
+shape = SubResource("CapsuleShape3D_0fj1v")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+
+[connection signal="chase_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_chase_animation"]
+[connection signal="die_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_die_animation"]
+[connection signal="hit_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_hit_animation"]
+[connection signal="idle_stand_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_idle_stand_animation"]
