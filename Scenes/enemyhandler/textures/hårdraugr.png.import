@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boqym6mrqbdu2"
-path.s3tc="res://.godot/imported/colormap.png-1d239583b696d7707a81c286bf0320b2.s3tc.ctex"
+uid="uid://cqi3olmifv6ug"
+path.s3tc="res://.godot/imported/hårdraugr.png-cc8e5fbc9d69e120c3e5345ef88eece8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://weaponhandler/KenneyBlast/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-1d239583b696d7707a81c286bf0320b2.s3tc.ctex"]
+source_file="res://Scenes/enemyhandler/textures/hårdraugr.png"
+dest_files=["res://.godot/imported/hårdraugr.png-cc8e5fbc9d69e120c3e5345ef88eece8.s3tc.ctex"]
 
 [params]
 

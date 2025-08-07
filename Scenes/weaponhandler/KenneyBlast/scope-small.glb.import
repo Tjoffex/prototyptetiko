@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bi5malj031np4"
-path="res://.godot/imported/scope-small.glb-b847314466e89f11d0f1906d0939a181.scn"
+path="res://.godot/imported/scope-small.glb-0efc5c2645098306b39151d0dad4c4fd.scn"
 
 [deps]
 
-source_file="res://weaponhandler/KenneyBlast/scope-small.glb"
-dest_files=["res://.godot/imported/scope-small.glb-b847314466e89f11d0f1906d0939a181.scn"]
+source_file="res://Scenes/weaponhandler/KenneyBlast/scope-small.glb"
+dest_files=["res://.godot/imported/scope-small.glb-0efc5c2645098306b39151d0dad4c4fd.scn"]
 
 [params]
 

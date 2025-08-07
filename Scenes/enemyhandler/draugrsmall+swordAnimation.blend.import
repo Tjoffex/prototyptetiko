@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d1tg1g26sn2sa"
-path="res://.godot/imported/draugrsmall+swordAnimation.blend-32151d4d9cbe26d19ec948964b74b14a.scn"
+path="res://.godot/imported/draugrsmall+swordAnimation.blend-5172c9d1092509d1908ac8f9aba266de.scn"
 
 [deps]
 
-source_file="res://enemyhandler/draugrsmall+swordAnimation.blend"
-dest_files=["res://.godot/imported/draugrsmall+swordAnimation.blend-32151d4d9cbe26d19ec948964b74b14a.scn"]
+source_file="res://Scenes/enemyhandler/draugrsmall+swordAnimation.blend"
+dest_files=["res://.godot/imported/draugrsmall+swordAnimation.blend-5172c9d1092509d1908ac8f9aba266de.scn"]
 
 [params]
 

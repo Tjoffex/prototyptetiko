@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cng8fyio2gosn"
-path="res://.godot/imported/vampyric shotgun wo rig.blend-bf5a6da246220c63ec983f487c97e33d.scn"
+path="res://.godot/imported/vampyric shotgun wo rig.blend-c36b3a0c5e1523022c9b6d15cccb25bb.scn"
 
 [deps]
 
-source_file="res://weaponhandler/vampyric shotgun wo rig.blend"
-dest_files=["res://.godot/imported/vampyric shotgun wo rig.blend-bf5a6da246220c63ec983f487c97e33d.scn"]
+source_file="res://Scenes/weaponhandler/vampyric shotgun wo rig.blend"
+dest_files=["res://.godot/imported/vampyric shotgun wo rig.blend-c36b3a0c5e1523022c9b6d15cccb25bb.scn"]
 
 [params]
 

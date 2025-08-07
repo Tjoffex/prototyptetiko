@@ -15,7 +15,7 @@ var test = "fel"
 #ska INTE bo här permanent!
 var damage = 20
 
-signal weapon_fired()
+
 signal trigger_pulled()
 signal trigger_released()
 
@@ -46,14 +46,13 @@ func _input(event: InputEvent) -> void:
 		
 		
 	if Input.is_action_pressed("Weapon_fired"):
-		weapon_fired.emit()
 		trigger_pulled.emit()
 	
 	if Input.is_action_just_released("Weapon_fired"):
 		trigger_released.emit()
 		if aim.is_colliding():
 			target = aim.get_collider()
-			if target.has_method("hit"):
+			if target.is_in_group("enemies"):
 				target.hit(damage) 
 
 func set_values():

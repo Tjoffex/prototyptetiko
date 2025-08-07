@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dj8ks8f1mx0rb"
-path="res://.godot/imported/Rune Pistol.blend-0083b6c052e1e67178ba9f2e91877b00.scn"
+path="res://.godot/imported/Rune Pistol.blend-8fcf1d64e8326ce83c15c0cdd49667d2.scn"
 
 [deps]
 
-source_file="res://weaponhandler/Rune Pistol.blend"
-dest_files=["res://.godot/imported/Rune Pistol.blend-0083b6c052e1e67178ba9f2e91877b00.scn"]
+source_file="res://Scenes/weaponhandler/Rune Pistol.blend"
+dest_files=["res://.godot/imported/Rune Pistol.blend-8fcf1d64e8326ce83c15c0cdd49667d2.scn"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk5dmugtxbdww"]
 
-[ext_resource type="PackedScene" uid="uid://d1tg1g26sn2sa" path="res://enemyhandler/draugrsmall+swordAnimation.blend" id="1_cw8nb"]
-[ext_resource type="Script" uid="uid://cn0akmvejgy4s" path="res://enemyhandler/draugranimation.gd" id="2_yvelw"]
+[ext_resource type="PackedScene" uid="uid://d1tg1g26sn2sa" path="res://Scenes/enemyhandler/draugrsmall+swordAnimation.blend" id="1_cw8nb"]
+[ext_resource type="Script" uid="uid://cn0akmvejgy4s" path="res://Scripts/draugranimation.gd" id="2_yvelw"]
 
 [node name="draugrsmall+swordAnimation" instance=ExtResource("1_cw8nb")]
 script = ExtResource("2_yvelw")

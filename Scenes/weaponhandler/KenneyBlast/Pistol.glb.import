@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fuiqd3fesx1x"
-path="res://.godot/imported/blaster.glb-72a495d701df8cf4f3c3ab0f864201eb.scn"
+uid="uid://bjcwijgydv877"
+path="res://.godot/imported/Pistol.glb-1ebf250e53114a1af10e6e40b2a92a7e.scn"
 
 [deps]
 
-source_file="res://weaponhandler/KenneyBlast/blaster.glb"
-dest_files=["res://.godot/imported/blaster.glb-72a495d701df8cf4f3c3ab0f864201eb.scn"]
+source_file="res://Scenes/weaponhandler/KenneyBlast/Pistol.glb"
+dest_files=["res://.godot/imported/Pistol.glb-1ebf250e53114a1af10e6e40b2a92a7e.scn"]
 
 [params]
 
