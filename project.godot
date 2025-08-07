@@ -14,6 +14,10 @@ config/name="PrototypTetiko"
 run/main_scene="res://Main/world.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+Settings="*res://Main/settings.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

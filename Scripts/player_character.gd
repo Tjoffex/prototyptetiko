@@ -1,13 +1,15 @@
 extends CharacterBody3D
 #controls PC
 
+#variables from settings
+var speed : float
+var jump_speed : float
+var mouse_sensitivity : float
+var health : int
+
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var speed = 5
-var jump_speed = 5
-var mouse_sensitivity = 0.005
 var target
-var health = 100
-var test = "fel"
 @onready var aim = %RayCast3D
 @onready var collider = $CollisionShape3D
 
@@ -30,10 +32,11 @@ func _physics_process(delta: float) -> void:
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
+	
 	move_and_slide()
+	
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = jump_speed 
-		
 	
 	
 	
@@ -43,8 +46,7 @@ func _input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-		
-		
+	#handles weapon fireing
 	if Input.is_action_pressed("Weapon_fired"):
 		trigger_pulled.emit()
 	
@@ -55,6 +57,10 @@ func _input(event: InputEvent) -> void:
 			if target.is_in_group("enemies"):
 				target.hit(damage) 
 
+#gets values from global Settings
 func set_values():
-	#get settings
-	pass
+	speed = Settings.speed
+	jump_speed = Settings.jump_speed
+	mouse_sensitivity = Settings.mouse_sensitivity
+	health = Settings.health
+	

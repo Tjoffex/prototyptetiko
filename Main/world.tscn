@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://iyniqlas5w4n" path="res://Scenes/player_character/player_character.tscn" id="7_qlry6"]
 [ext_resource type="PackedScene" uid="uid://bp6tnc0w1ys0l" path="res://Scenes/enemyhandler/test_enemy.tscn" id="9_h5inl"]
 
+[sub_resource type="Environment" id="Environment_5v1tr"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ukr8"]
 animations = [{
 "frames": [{
@@ -49,10 +51,11 @@ func spawn():
 	new_enemy.global_position = global_position
 "
 
-[sub_resource type="Environment" id="Environment_5v1tr"]
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_byrqr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5v1tr")
 
 [node name="GUI" type="Node2D" parent="."]
 process_mode = 3
@@ -168,9 +171,6 @@ enemy = ExtResource("9_h5inl")
 [node name="Spawntimer" type="Timer" parent="EnemyHandler"]
 wait_time = 5.0
 autostart = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_5v1tr")
 
 [connection signal="exit" from="." to="GUI" method="_on_world_exit"]
 [connection signal="pressed" from="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

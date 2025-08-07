@@ -21,6 +21,8 @@ enum States {
 
 var has_los = false
 var chasing = false
+var dead = false
+var taking_damage = false
 
 
 #signals
@@ -42,15 +44,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	look_for_player()
 	
-	
-	if chasing:
+	#refactor!
+	if chasing and not dead:
 		chase_animation.emit()
 		nav_agent.set_target_position(player.global_position)
 		var next_nav_point = nav_agent.get_next_path_position()
 		
 		velocity = (next_nav_point - self.global_position).normalized() * speed
-	
-		
+	elif dead:
+		die_animation.emit()
+		await get_tree().create_timer(1.25).timeout
+		queue_free()
 	else:
 		idle_stand_animation.emit()
 		nav_agent.set_target_position(self.global_position)
@@ -73,10 +77,11 @@ func hit(damage):
 	health -= damage
 	hit_animation.emit()
 	healthbar.value = health
-	
 	#TODO compare to start health to count percentage
-	
 	if health < 1:
-		die_animation.emit()
 		
-		queue_free()
+		dead = true
+		
+
+func state_machine():
+	pass
