@@ -39,6 +39,7 @@ theme = ExtResource("3_waq3w")
 value = 100.0
 show_percentage = false
 
+[connection signal="attack_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_attack_animation"]
 [connection signal="chase_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_chase_animation"]
 [connection signal="die_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_die_animation"]
 [connection signal="hit_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_hit_animation"]
