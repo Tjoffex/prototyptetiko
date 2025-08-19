@@ -136,6 +136,17 @@ theme = ExtResource("3_i6woc")
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer"]
 layout_mode = 2
 
+[node name="GOLabel" type="Label" parent="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_i6woc")
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
 [node name="ResumeButton" type="Button" parent="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_i6woc")
@@ -169,13 +180,16 @@ script = SubResource("GDScript_hhn33")
 enemy = ExtResource("9_h5inl")
 
 [node name="Spawntimer" type="Timer" parent="EnemyHandler"]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
 
 [connection signal="exit" from="." to="GUI" method="_on_world_exit"]
+[connection signal="pressed" from="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/ResumeButton" to="GUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="GUI/CanvasLayer/CenterContainer/Control/MainMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="dead" from="PlayerCharacter" to="." method="_on_player_character_dead"]
+[connection signal="new_health" from="PlayerCharacter" to="GUI" method="_on_player_character_new_health"]
 [connection signal="trigger_pulled" from="PlayerCharacter" to="GUI" method="_on_player_character_trigger_pulled"]
 [connection signal="trigger_released" from="PlayerCharacter" to="GUI" method="_on_player_character_trigger_released"]
 [connection signal="timeout" from="EnemyHandler/Spawntimer" to="EnemyHandler" method="_on_spawntimer_timeout"]

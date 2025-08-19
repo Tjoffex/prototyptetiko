@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var target
 @onready var aim = %RayCast3D
 @onready var collider = $CollisionShape3D
-
+@onready var hitbox = $Hitbox
 
 #ska INTE bo här permanent!
 var damage = 20
@@ -20,10 +20,14 @@ var damage = 20
 
 signal trigger_pulled()
 signal trigger_released()
+signal new_health(int)
+signal dead()
+
 
 
 func _ready() -> void:
 	set_values()
+	add_to_group("player")
 
 
 func _physics_process(delta: float) -> void:
@@ -32,11 +36,11 @@ func _physics_process(delta: float) -> void:
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
-	
-	move_and_slide()
-	
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = jump_speed 
+	move_and_slide()
+	update_health()
+	
 	
 	
 	
@@ -63,4 +67,14 @@ func set_values():
 	jump_speed = Settings.jump_speed
 	mouse_sensitivity = Settings.mouse_sensitivity
 	health = Settings.health
+	
+func update_health():
+	new_health.emit(health)
+	if health < 1:
+		dead.emit()
+	
+func take_damage(damage):
+	health -= damage
+	
+
 	

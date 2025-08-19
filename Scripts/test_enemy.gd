@@ -3,6 +3,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health = 100
 var speed = 1
 var state = States.idle
+var damage_min = 7
+var damage_max = 14
 
 #state machine, not implemented
 enum States {
@@ -18,6 +20,7 @@ enum States {
 #brittle nodepaths, not ideal
 @onready var player = get_node("../PlayerCharacter")
 @onready var healthbar = $HealthBarSprite/HealthBarViewport/HealthBar
+@onready var hitbox = $Hitbox/HitboxCollider
 
 var has_los = false
 var chasing = false
@@ -35,9 +38,11 @@ signal chase_animation
 signal hit_animation
 signal die_animation
 
+signal player_damage
 
 func _ready() -> void:
 	add_to_group("enemies")
+	hitbox.disabled = true
 	idle_stand_animation.emit()
 	
 
@@ -46,32 +51,11 @@ func _physics_process(delta: float) -> void:
 	look_at(player.global_position)
 	move_and_slide()
 	look_for_player()
-	check_attack()
 	
-	#refactor!
-	if taking_damage and not dead:
-		stay()
-		hit_animation.emit()
-		await get_tree().create_timer(1.25).timeout
-		taking_damage = false
-	elif chasing and not dead and not attacking:
-		stopped = false
-		chase_animation.emit()
-		nav_agent.set_target_position(player.global_position)
-		var next_nav_point = nav_agent.get_next_path_position()
-		velocity = (next_nav_point - self.global_position).normalized() * speed
-	elif attacking and not dead:
-		attack_animation.emit()
-		await get_tree().create_timer(1.25).timeout
-		attacking = false
-	elif dead:
-		stay()
-		die_animation.emit()
-		await get_tree().create_timer(1.25).timeout
-		queue_free()
-	else:
-		idle_stand_animation.emit()
-		stay()
+	state_machine()
+	check_attack()
+
+	
 
 #checks LOS, sets chasing bool
 func look_for_player():
@@ -93,15 +77,40 @@ func hit(damage):
 	if health < 1:
 		
 		dead = true
-		
+
+#change to not use navagent
 func check_attack():
 	if nav_agent.distance_to_target() < 2 and !stopped:
 		attacking = true
 	else:
 		attacking = false
 
+#refactor!
 func state_machine():
-	pass
+	if taking_damage and not dead:
+		stay()
+		hit_animation.emit()
+		await get_tree().create_timer(1.25).timeout
+		taking_damage = false
+	elif chasing and not dead and not attacking:
+		stopped = false
+		chase_animation.emit()
+		chase()
+	elif attacking and not dead:
+		attack_animation.emit()
+		await get_tree().create_timer(0.75).timeout
+		hitbox.disabled = false
+		await get_tree().create_timer(0.75).timeout
+		hitbox.disabled = true
+		attacking = false
+	elif dead:
+		stay()
+		die_animation.emit()
+		await get_tree().create_timer(1.25).timeout
+		queue_free()
+	else:
+		idle_stand_animation.emit()
+		stay()
 
 func stay():
 	stopped = true
@@ -109,5 +118,17 @@ func stay():
 	var next_nav_point = nav_agent.get_next_path_position()
 	velocity = (next_nav_point - self.global_position).normalized() * speed
 	
+func chase():
+	nav_agent.set_target_position(player.global_position)
+	var next_nav_point = nav_agent.get_next_path_position()
+	velocity = (next_nav_point - self.global_position).normalized() * speed
+
+#replace with wander
 func wander():
-	pass
+	stay()
+
+#hitbox meets player
+func _on_hitbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		hitbox.disabled = true
+		body.take_damage(randi_range(damage_min, damage_max))
