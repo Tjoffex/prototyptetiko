@@ -38,7 +38,6 @@ signal chase_animation
 signal hit_animation
 signal die_animation
 
-signal player_damage
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -62,9 +61,11 @@ func look_for_player():
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
 	query.collide_with_areas = true
+
 	var los = space.intersect_ray(query)
+
 	
-	if los.collider == player:
+	if los.collider.is_in_group("player"):
 		chasing = true
 	else:
 		chasing = false
@@ -75,7 +76,6 @@ func hit(damage):
 	healthbar.value = health
 	#TODO compare to start health to count percentage
 	if health < 1:
-		
 		dead = true
 
 #change to not use navagent
@@ -100,8 +100,10 @@ func state_machine():
 		attack_animation.emit()
 		await get_tree().create_timer(0.75).timeout
 		hitbox.disabled = false
+		#gör skada om i zon
 		await get_tree().create_timer(0.75).timeout
 		hitbox.disabled = true
+		
 		attacking = false
 	elif dead:
 		stay()
@@ -125,10 +127,14 @@ func chase():
 
 #replace with wander
 func wander():
+	idle_walk_animation.emit()
 	stay()
 
 #hitbox meets player
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		hitbox.disabled = true
 		body.take_damage(randi_range(damage_min, damage_max))
+
+
+#func _on_hitbox_body_exited(body: Node3D) -> void:
+#	pass # Replace with function body.

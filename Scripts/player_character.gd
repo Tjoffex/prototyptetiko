@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var target
 @onready var aim = %RayCast3D
 @onready var collider = $CollisionShape3D
-@onready var hitbox = $Hitbox
+
 
 #ska INTE bo här permanent!
 var damage = 20
@@ -73,8 +73,8 @@ func update_health():
 	if health < 1:
 		dead.emit()
 	
-func take_damage(damage):
-	health -= damage
+func take_damage(health_lost):
+	health -= health_lost
 	
 
 	

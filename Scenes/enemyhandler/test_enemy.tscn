@@ -56,5 +56,5 @@ script = ExtResource("5_ra4di")
 [connection signal="die_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_die_animation"]
 [connection signal="hit_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_hit_animation"]
 [connection signal="idle_stand_animation" from="." to="draugrsmall+swordAnimation" method="_on_test_enemy_idle_stand_animation"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
