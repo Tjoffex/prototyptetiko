@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b4f35bbq76vn8" path="res://environment/Ugly Test Environment.blend" id="6_70uel"]
 [ext_resource type="PackedScene" uid="uid://iyniqlas5w4n" path="res://Scenes/player_character/player_character.tscn" id="7_hiqwa"]
 [ext_resource type="Script" uid="uid://dira8iu85fivb" path="res://Main/EnemyHandler.tres.gd" id="8_2u3nc"]
-[ext_resource type="PackedScene" uid="uid://bp6tnc0w1ys0l" path="res://Scenes/enemyhandler/test_enemy.tscn" id="9_udxuc"]
+[ext_resource type="PackedScene" uid="uid://b35npx1xi3r1y" path="res://Scenes/enemyhandler/enemy_draugr.tscn" id="9_ioo17"]
 
 [sub_resource type="Environment" id="Environment_5v1tr"]
 
@@ -161,10 +161,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.60202, 0)
 [node name="EnemyHandler" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.2, 0)
 script = ExtResource("8_2u3nc")
-enemy = ExtResource("9_udxuc")
+enemy = ExtResource("9_ioo17")
 
 [node name="Spawntimer" type="Timer" parent="EnemyHandler"]
 wait_time = 2.0
+one_shot = true
 autostart = true
 
 [connection signal="exit" from="." to="GUI" method="_on_world_exit"]

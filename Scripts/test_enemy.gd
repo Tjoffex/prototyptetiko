@@ -9,7 +9,8 @@ var damage_max = 14
 #state machine, not implemented
 enum States {
 	idle,
-	chase,
+	run,
+	attack,
 	hit,
 	dead,
 }
@@ -17,7 +18,6 @@ enum States {
 
 
 @onready var nav_agent = $NavigationAgent3D
-#brittle nodepaths, not ideal
 @onready var player = get_node("../PlayerCharacter")
 @onready var healthbar = $HealthBarSprite/HealthBarViewport/HealthBar
 @onready var hitbox = $Hitbox/HitboxCollider
@@ -61,10 +61,7 @@ func look_for_player():
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
 	query.collide_with_areas = true
-
 	var los = space.intersect_ray(query)
-
-	
 	if los.collider.is_in_group("player"):
 		chasing = true
 	else:
