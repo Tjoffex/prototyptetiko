@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://qpinmplrysy3"]
+[gd_scene load_steps=4 format=3 uid="uid://qpinmplrysy3"]
 
 [ext_resource type="PackedScene" uid="uid://bk5dmugtxbdww" path="res://Scenes/enemyhandler/draugr.tscn" id="1_tsuob"]
+[ext_resource type="Script" uid="uid://c6or71ppy2re3" path="res://Scripts/sword.gd" id="2_d1rl2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d1rl2"]
 
 [node name="draugrsmall+swordAnimation" instance=ExtResource("1_tsuob")]
 
-[node name="sword" parent="rig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0357311, -0.0314135, 0.0315051, 0.00266336, -0.0451611, -0.0394201, 0.0435376, -0.0224434, 0.0283556, -0.29839, 0.700563, -0.0905289)
-
 [node name="sword" parent="rig/Skeleton3D/sword" index="0"]
 visible = true
+script = ExtResource("2_d1rl2")
 
-[node name="StaticBody3D" parent="rig/Skeleton3D/sword/sword" index="0"]
+[node name="Area3D" type="Area3D" parent="rig/Skeleton3D/sword/sword" index="0"]
+transform = Transform3D(0.991366, -0.0865157, 0.0985321, 0.0859377, 0.996249, 0.0101032, -0.0990366, -0.00154833, 0.995082, 0, 0, 0)
+
+[node name="StaticBody3D" parent="rig/Skeleton3D/sword/sword" index="1"]
 collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_d1rl2")

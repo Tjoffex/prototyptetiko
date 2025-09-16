@@ -18,7 +18,7 @@ var chasing = false
 @onready var player = get_node("../PlayerCharacter")
 @onready var healthbar = $HealthBarSprite/HealthBarViewport/HealthBar
 @onready var animation = $draugr/AnimationPlayer
-@onready var attack_zone = $AttackZone
+#@onready var attack_zone = $AttackZone
 #@onready var swordhitbox = $draugr_asset/rig/Skeleton3D/sword/sword/StaticBody3D/SwordHitbox
 
 # states
@@ -42,17 +42,32 @@ func _physics_process(delta: float) -> void:
 	velocity.y += -gravity * delta
 	look_at(player.global_position)
 	move_and_slide()
-	set_state()
 	look_for_player()
-	move()
+	set_state()
+	check_state(state)
 
-#handles state
+#Changes state
 func change_state(new_state):
 	if state != new_state:
 		state = new_state
-		print(state)
-		print(on_target)
-		match state:
+
+
+#Checks what state should be run
+func set_state():
+	if health < 1:
+		change_state(States.DEAD)
+	elif is_hit:
+		change_state(States.HIT)
+	elif on_target:
+		change_state(States.ATTACK)
+	elif chasing:
+		change_state(States.RUN)
+	else:
+		change_state(States.IDLE)
+
+
+func check_state(curr_state):
+	match curr_state:
 			States.DEAD:
 				stay()
 				animation.play("Death")
@@ -70,25 +85,13 @@ func change_state(new_state):
 				animation.play("Attack")
 				var time = animation.current_animation_length
 				await get_tree().create_timer(time).timeout
-				on_target = false
+			States.RUN:
+				animation.play("AttackRun")
+				chase()
 			States.IDLE:
-				pass
+				stay()
+				animation.play("Idlestand")
 
-#Checks state for single-play animation and controls movement
-func set_state():
-	if health < 1:
-		change_state(States.DEAD)
-	elif is_hit:
-		change_state(States.HIT)
-	elif on_target:
-		change_state(States.ATTACK)
-	else:
-		change_state(States.IDLE)
-		if chasing:
-			animation.play("AttackRun")
-		else:
-			animation.play("Idlestand")
-		
 
 #Manages damage taking
 func hit(damage):
@@ -102,10 +105,6 @@ func look_for_player():
 	var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
 	query.collide_with_areas = true
 	var los = space.intersect_ray(query)
-	if nav_agent.distance_to_target() < 2:
-		on_target = true
-	else:
-		on_target = false
 	if los.collider.is_in_group("player"):
 		chasing = true
 	else:
@@ -128,3 +127,13 @@ func chase():
 func stay():
 	var next_nav_point = nav_agent.get_next_path_position()
 	velocity = (next_nav_point - self.global_position).normalized() * 0
+
+
+func _on_attack_zone_body_entered(body: Node3D) -> void:
+	if body == player:
+		on_target = true
+
+
+func _on_attack_zone_body_exited(body: Node3D) -> void:
+	if body == player:
+		on_target = false

@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var animation = $AnimationPlayer
+@onready var sword_hitbox = $rig/Skeleton3D/sword/sword/StaticBody3D/SwordHitbox
 
 
 func _on_test_enemy_chase_animation() -> void:

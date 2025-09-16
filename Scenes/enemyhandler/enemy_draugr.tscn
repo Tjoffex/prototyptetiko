@@ -9,8 +9,8 @@
 radius = 0.283817
 height = 1.85588
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ba6co"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba6co"]
+size = Vector3(1.63928, 1, 1.24243)
 
 [node name="Enemy_draugr" type="CharacterBody3D"]
 script = ExtResource("1_gevso")
@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape3D_gevso")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 billboard = 1
 script = ExtResource("3_ba6co")
 
@@ -39,5 +39,12 @@ theme = ExtResource("4_foigb")
 value = 100.0
 show_percentage = false
 
-[node name="AttackZone" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_ba6co")
+[node name="AttackZone" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_ba6co")
+
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
