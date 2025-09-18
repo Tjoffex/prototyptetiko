@@ -13,6 +13,7 @@ height = 1.85588
 size = Vector3(1.63928, 1, 1.24243)
 
 [node name="Enemy_draugr" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_gevso")
 
 [node name="draugr" parent="." instance=ExtResource("2_foigb")]

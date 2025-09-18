@@ -18,8 +18,7 @@ var chasing = false
 @onready var player = get_node("../PlayerCharacter")
 @onready var healthbar = $HealthBarSprite/HealthBarViewport/HealthBar
 @onready var animation = $draugr/AnimationPlayer
-#@onready var attack_zone = $AttackZone
-#@onready var swordhitbox = $draugr_asset/rig/Skeleton3D/sword/sword/StaticBody3D/SwordHitbox
+
 
 # states
 enum States {
@@ -34,8 +33,7 @@ var state : States
 func _ready() -> void:
 	add_to_group("enemies")
 	healthbar.max_value = max_health
-
-	#initial state
+	#set initial state
 	change_state(States.IDLE)
 	
 func _physics_process(delta: float) -> void:
@@ -103,19 +101,13 @@ func hit(damage):
 func look_for_player():
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(global_transform.origin, player.global_transform.origin)
-	query.collide_with_areas = true
+	
 	var los = space.intersect_ray(query)
 	if los.collider.is_in_group("player"):
 		chasing = true
 	else:
 		chasing = false
 
-#calls movement funcs
-func move():
-	if chasing and state == States.IDLE:
-		chase()
-	else:
-		stay()
 
 #chase movement
 func chase():
@@ -127,6 +119,7 @@ func chase():
 func stay():
 	var next_nav_point = nav_agent.get_next_path_position()
 	velocity = (next_nav_point - self.global_position).normalized() * 0
+
 
 
 func _on_attack_zone_body_entered(body: Node3D) -> void:
