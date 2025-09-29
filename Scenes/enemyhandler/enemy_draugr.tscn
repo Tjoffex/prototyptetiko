@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gevso"]
 radius = 0.283817
-height = 1.85588
+height = 1.72361
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ba6co"]
 size = Vector3(1.63928, 1, 1.24243)
@@ -18,6 +18,9 @@ script = ExtResource("1_gevso")
 
 [node name="draugr" parent="." instance=ExtResource("2_foigb")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="sword" parent="draugr/rig/Skeleton3D" index="0"]
+transform = Transform3D(0.00195868, -0.00365325, -0.0576663, -0.0576694, 0.00347443, -0.00217889, 0.00360316, 0.0575948, -0.00352634, -0.934339, 1.21419, -0.00167)
 
 [node name="Hurtbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gevso")
@@ -47,5 +50,9 @@ collision_layer = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 shape = SubResource("BoxShape3D_ba6co")
 
+[connection signal="sword_collision" from="draugr" to="." method="_on_draugr_sword_collision"]
+[connection signal="body_entered" from="draugr/rig/Skeleton3D/sword/sword/Hitbox" to="draugr" method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+
+[editable path="draugr"]

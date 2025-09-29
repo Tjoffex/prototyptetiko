@@ -130,3 +130,8 @@ func _on_attack_zone_body_entered(body: Node3D) -> void:
 func _on_attack_zone_body_exited(body: Node3D) -> void:
 	if body == player:
 		on_target = false
+
+
+func _on_draugr_sword_collision(body) -> void:
+	if body.is_in_group("player"):
+		body.take_damage(randi_range(damage_min, damage_max))

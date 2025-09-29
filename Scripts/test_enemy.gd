@@ -129,7 +129,7 @@ func wander():
 
 #hitbox meets player
 func _on_hitbox_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body == player:
 		body.take_damage(randi_range(damage_min, damage_max))
 
 
