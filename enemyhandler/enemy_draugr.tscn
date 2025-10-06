@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b35npx1xi3r1y"]
 
-[ext_resource type="Script" uid="uid://2b6yod8b2ene" path="res://Scripts/enemy_draugr.gd" id="1_gevso"]
-[ext_resource type="PackedScene" uid="uid://qpinmplrysy3" path="res://Scenes/enemyhandler/draugrinstance.tscn" id="2_foigb"]
-[ext_resource type="Script" uid="uid://di11nodts3kw2" path="res://Scripts/enemy_healthbar.gd" id="3_ba6co"]
-[ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://Main/default_theme.tres" id="4_foigb"]
+[ext_resource type="Script" uid="uid://2b6yod8b2ene" path="res://enemyhandler/enemy_draugr.gd" id="1_gevso"]
+[ext_resource type="PackedScene" uid="uid://qpinmplrysy3" path="res://enemyhandler/draugrinstance.tscn" id="2_foigb"]
+[ext_resource type="Script" uid="uid://di11nodts3kw2" path="res://enemyhandler/enemy_healthbar.gd" id="3_ba6co"]
+[ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://main/default_theme.tres" id="4_foigb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gevso"]
 radius = 0.283817

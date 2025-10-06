@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qpinmplrysy3"]
 
-[ext_resource type="PackedScene" uid="uid://bk5dmugtxbdww" path="res://Scenes/enemyhandler/draugr.tscn" id="1_tsuob"]
-[ext_resource type="Script" uid="uid://gbquwduohuu0" path="res://Scripts/draugrinstance.gd" id="2_d1rl2"]
+[ext_resource type="PackedScene" uid="uid://bk5dmugtxbdww" path="res://enemyhandler/draugr.tscn" id="1_tsuob"]
+[ext_resource type="Script" uid="uid://gbquwduohuu0" path="res://enemyhandler/draugrinstance.gd" id="2_d1rl2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1rl2"]
 radius = 0.649976
