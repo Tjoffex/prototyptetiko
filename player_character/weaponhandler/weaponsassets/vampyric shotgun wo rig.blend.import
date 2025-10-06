@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dj8ks8f1mx0rb"
-path="res://.godot/imported/Rune Pistol.blend-d3acb216d73d829a8afb7077aef525d8.scn"
+uid="uid://cng8fyio2gosn"
+path="res://.godot/imported/vampyric shotgun wo rig.blend-a463c07ab6e53f8e1f743305a5351aa8.scn"
 
 [deps]
 
-source_file="res://player_character/weaponhandler/Rune Pistol.blend"
-dest_files=["res://.godot/imported/Rune Pistol.blend-d3acb216d73d829a8afb7077aef525d8.scn"]
+source_file="res://player_character/weaponhandler/weaponsassets/vampyric shotgun wo rig.blend"
+dest_files=["res://.godot/imported/vampyric shotgun wo rig.blend-a463c07ab6e53f8e1f743305a5351aa8.scn"]
 
 [params]
 

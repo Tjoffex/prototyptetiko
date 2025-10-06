@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://iyniqlas5w4n"]
 
 [ext_resource type="Script" uid="uid://qjr3aa4kpwh3" path="res://player_character/player_character.gd" id="1_o0f8b"]
-[ext_resource type="PackedScene" uid="uid://6iyul7c18qrd" path="res://player_character/weaponhandler/KenneyBlast/rifle.glb" id="2_o0f8b"]
-[ext_resource type="PackedScene" uid="uid://cng8fyio2gosn" path="res://player_character/weaponhandler/vampyric shotgun wo rig.blend" id="2_pb3n0"]
-[ext_resource type="PackedScene" uid="uid://bjcwijgydv877" path="res://player_character/weaponhandler/KenneyBlast/Pistol.glb" id="4_pb3n0"]
-[ext_resource type="PackedScene" uid="uid://fuiqd3fesx1x" path="res://player_character/weaponhandler/KenneyBlast/blaster.glb" id="5_ons1q"]
+[ext_resource type="PackedScene" uid="uid://6iyul7c18qrd" path="res://player_character/weaponhandler/weaponsassets/rifle.glb" id="2_o0f8b"]
+[ext_resource type="PackedScene" uid="uid://cng8fyio2gosn" path="res://player_character/weaponhandler/weaponsassets/vampyric shotgun wo rig.blend" id="2_pb3n0"]
+[ext_resource type="PackedScene" uid="uid://bjcwijgydv877" path="res://player_character/weaponhandler/weaponsassets/Pistol.glb" id="4_pb3n0"]
+[ext_resource type="PackedScene" uid="uid://fuiqd3fesx1x" path="res://player_character/weaponhandler/weaponsassets/blaster.glb" id="5_ons1q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8j60k"]
 
@@ -24,17 +24,17 @@ unique_name_in_owner = true
 target_position = Vector3(0, 0, -100)
 collision_mask = 3
 
-[node name="blaster-e2" parent="Camera3D" instance=ExtResource("2_o0f8b")]
+[node name="rifle" parent="Camera3D" instance=ExtResource("2_o0f8b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -1.5)
 
-[node name="blaster-b2" parent="Camera3D" instance=ExtResource("4_pb3n0")]
+[node name="pistol" parent="Camera3D" instance=ExtResource("4_pb3n0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.75)
 visible = false
 
-[node name="blaster-d2" parent="Camera3D" instance=ExtResource("5_ons1q")]
+[node name="blaster" parent="Camera3D" instance=ExtResource("5_ons1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.75)
 visible = false
 
 [node name="vampyric shotgun wo rig" parent="Camera3D" instance=ExtResource("2_pb3n0")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.5, -0.5, 0)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.5, -0.5, -0.75)
 visible = false
