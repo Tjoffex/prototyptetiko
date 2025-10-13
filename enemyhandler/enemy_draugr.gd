@@ -1,4 +1,14 @@
 extends CharacterBody3D
+
+# states
+enum States {
+	IDLE,
+	RUN,
+	ATTACK,
+	HIT,
+	DEAD,
+}
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var max_health = 100
 var health = max_health
@@ -13,6 +23,8 @@ var on_target = false
 
 var chasing = false
 
+var state : States
+
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var player = get_node("../PlayerCharacter")
@@ -20,15 +32,8 @@ var chasing = false
 @onready var animation = $draugr/AnimationPlayer
 
 
-# states
-enum States {
-	IDLE,
-	RUN,
-	ATTACK,
-	HIT,
-	DEAD,
-}
-var state : States
+
+
 
 func _ready() -> void:
 	add_to_group("enemies")

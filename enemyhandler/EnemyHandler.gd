@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var enemy : PackedScene
+
 @onready var timer = $Spawntimer
 
 
