@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b35npx1xi3r1y"]
+
+[ext_resource type="Script" uid="uid://2b6yod8b2ene" path="res://enemyhandler/enemy_draugr.gd" id="1_gevso"]
+[ext_resource type="PackedScene" uid="uid://qpinmplrysy3" path="res://enemyhandler/draugrinstance.tscn" id="2_foigb"]
+[ext_resource type="Script" uid="uid://di11nodts3kw2" path="res://enemyhandler/enemy_healthbar.gd" id="3_ba6co"]
+[ext_resource type="Theme" uid="uid://ctpycgdtxciro" path="res://main/default_theme.tres" id="4_foigb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gevso"]
+radius = 0.283817
+height = 1.72361
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba6co"]
+size = Vector3(1.63928, 1, 1.24243)
+
+[node name="Enemy_draugr" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_gevso")
+
+[node name="draugr" parent="." instance=ExtResource("2_foigb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="sword" parent="draugr/rig/Skeleton3D" index="0"]
+transform = Transform3D(0.00195868, -0.00365325, -0.0576663, -0.0576694, 0.00347443, -0.00217889, 0.00360316, 0.0575948, -0.00352634, -0.934339, 1.21419, -0.00167)
+
+[node name="Hurtbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gevso")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 1
+script = ExtResource("3_ba6co")
+
+[node name="HealthBarViewport" type="SubViewport" parent="HealthBarSprite"]
+transparent_bg = true
+size = Vector2i(100, 10)
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarSprite/HealthBarViewport"]
+offset_right = 100.0
+offset_bottom = 10.0
+theme = ExtResource("4_foigb")
+value = 100.0
+show_percentage = false
+
+[node name="AttackZone" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_ba6co")
+
+[connection signal="sword_collision" from="draugr" to="." method="_on_draugr_sword_collision"]
+[connection signal="body_entered" from="draugr/rig/Skeleton3D/sword/sword/Hitbox" to="draugr" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+
+[editable path="draugr"]
