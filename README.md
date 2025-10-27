@@ -5,3 +5,11 @@
 
 * Enemy Asset by Robin.B
 * Weapon Assets from [Kenney](https://www.kenney.nl/)
+
+## Known issues
+* Walking into enemies pushes them in front of player character
+* Not touchscreen compatible
+* Enemies block eachothers sightline to player character
+
+##Playable Build
+(links go here)
