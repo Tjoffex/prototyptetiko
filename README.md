@@ -11,5 +11,5 @@
 * Not touchscreen compatible
 * Enemies block eachothers sightline to player character
 
-##Playable Build
-(links go here)
+## Playable Build
+[(My itch page)](https://tjoffex.itch.io/tetikoprototypwip)
